@@ -1,0 +1,733 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #071f26;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 950px;
+    margin: 40px auto;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.header h1 span {
+    color: #31d6c4;
+}
+
+.subtitle {
+    font-size: 24px;
+    margin-top: 8px;
+    color: #8de8df;
+}
+
+.tagline {
+    margin-top: 10px;
+    color: #9bbdc1;
+    font-size: 15px;
+}
+
+
+/* ================= COMMON CARDS ================= */
+
+.analysis-card,
+.result-section {
+    background: #0d3b43;
+    border: 1px solid #245b63;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+
+/* ================= HEADINGS ================= */
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    color: #9bbdc1;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ================= FORM ================= */
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group > label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* ================= UPLOAD ================= */
+
+.upload-box {
+    min-height: 105px;
+    border: 1px dashed #31d6c4;
+    border-radius: 12px;
+    background: #082d35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.upload-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pdf-icon {
+    width: 55px;
+    height: 60px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #e74c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.upload-info h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.upload-info p {
+    font-size: 13px;
+    color: #9bbdc1;
+}
+
+#resumeFile {
+    display: none;
+}
+
+.choose-btn {
+    background: #31d6c4;
+    color: #071f26;
+    padding: 13px 22px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.choose-btn:hover {
+    background: #8de8df;
+}
+
+.file-name {
+    color: #8de8df;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+
+/* ================= INPUTS ================= */
+
+input[type="text"],
+textarea {
+    width: 100%;
+    background: #082d35;
+    border: 1px solid #28616a;
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #77969b;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #31d6c4;
+    box-shadow: 0 0 0 2px rgba(49, 214, 196, 0.08);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+
+/* ================= BUTTON ================= */
+
+.analyze-btn {
+    width: 100%;
+    padding: 17px;
+    border: none;
+    border-radius: 10px;
+    background: #31d6c4;
+    color: #071f26;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.analyze-btn:hover {
+    background: #8de8df;
+    transform: translateY(-2px);
+}
+
+.analyze-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ================= STATUS ================= */
+
+.status-message {
+    text-align: center;
+    color: #8de8df;
+    margin-top: 15px;
+    font-size: 14px;
+    min-height: 18px;
+}
+
+
+/* ==================================================
+   ANALYSIS RESULT
+   ================================================== */
+
+#resultSection {
+    display: none;
+}
+
+
+/* ================= JOB MATCH ================= */
+
+.match-card {
+    background: #082d35;
+    border: 1px solid #245b63;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 22px;
+}
+
+.score-circle {
+    width: 115px;
+    height: 115px;
+    min-width: 115px;
+    border-radius: 50%;
+    border: 9px solid #31d6c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-circle span {
+    font-size: 27px;
+    font-weight: bold;
+    color: #31d6c4;
+}
+
+.match-info h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.match-info p {
+    color: #9bbdc1;
+}
+
+
+/* ==================================================
+   ATS ANALYSIS
+   ================================================== */
+
+.ats-card {
+    background: #082d35;
+    border: 1px solid #28616a;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.ats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.ats-header h2 {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.ats-header p {
+    color: #9bbdc1;
+    font-size: 13px;
+}
+
+.ats-score {
+    min-width: 90px;
+    text-align: center;
+}
+
+.ats-score span {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: #31d6c4;
+}
+
+.ats-score small {
+    color: #9bbdc1;
+    font-size: 11px;
+}
+
+
+/* ATS PROGRESS */
+
+.ats-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.ats-progress {
+    height: 10px;
+    flex: 1;
+    background: #143f47;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ats-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #31d6c4;
+    border-radius: 20px;
+    transition: width 0.8s ease;
+}
+
+#atsProgressText {
+    width: 45px;
+    color: #8de8df;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   RESULT GRID
+   ================================================== */
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+
+/* ================= RESULT CARD ================= */
+
+.result-card {
+    background: #082d35;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #245b63;
+    min-height: 210px;
+}
+
+.result-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.result-title h3 {
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.result-title p {
+    color: #8daeb2;
+    font-size: 12px;
+}
+
+.result-icon {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+
+/* ================= MATCHING ================= */
+
+.matching-card {
+    border-color: #31b89f;
+}
+
+.matching-card .result-icon {
+    background: #b9f5df;
+    color: #087b61;
+}
+
+.matching-card li::before {
+    content: "✓";
+    color: #31d6c4;
+}
+
+
+/* ================= MISSING ================= */
+
+.missing-card {
+    border-color: #c85d69;
+}
+
+.missing-card .result-icon {
+    background: #ff9ba5;
+    color: #7b1e2a;
+}
+
+.missing-card li::before {
+    content: "−";
+    color: #ff7f8a;
+}
+
+
+/* ================= SUGGESTIONS ================= */
+
+.suggestion-card {
+    border-color: #397aa5;
+}
+
+.suggestion-card .result-icon {
+    background: #a8ddff;
+    color: #17628d;
+}
+
+.suggestion-card li::before {
+    content: "→";
+    color: #72c9ff;
+}
+
+
+/* ================= LIST ================= */
+
+.result-card ul {
+    list-style: none;
+}
+
+.result-card li {
+    padding: 8px 0;
+    color: #e7ffff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.result-card li::before {
+    margin-right: 9px;
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   RESUME STRUCTURE
+   ================================================== */
+
+.structure-card {
+    background: #082d35;
+    border: 1px solid #28616a;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 18px;
+}
+
+.structure-header {
+    margin-bottom: 20px;
+}
+
+.structure-header h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.structure-header p {
+    color: #9bbdc1;
+    font-size: 13px;
+}
+
+.structure-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.structure-item {
+    background: #0d3b43;
+    border: 1px solid #245b63;
+    border-radius: 9px;
+    padding: 12px;
+    color: #e7ffff;
+    font-size: 14px;
+}
+
+.structure-item::before {
+    content: "✓";
+    color: #31d6c4;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+
+/* ==================================================
+   KEYWORD MATCH
+   ================================================== */
+
+.keyword-card {
+    background: #082d35;
+    border: 1px solid #28616a;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 18px;
+}
+
+.keyword-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.keyword-header h2 {
+    font-size: 21px;
+}
+
+.keyword-header span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #31d6c4;
+}
+
+.keyword-card > p {
+    color: #9bbdc1;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .analysis-card,
+    .result-section {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .upload-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .choose-btn {
+        text-align: center;
+    }
+
+    .match-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ats-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ats-score {
+        text-align: left;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .structure-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ranking-button-container {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.ranking-btn {
+    background: #31d6c4;
+    color: #071f26;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.ranking-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(49, 214, 196, 0.25);
+}
+
+
+/* =====================================================
+   RESUME STRUCTURE
+   ===================================================== */
+
+.resume-structure-card {
+    margin-top: 24px;
+}
+
+.resume-structure-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.structure-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px 18px;
+
+    background: #071f26;
+    border: 1px solid #245a62;
+    border-radius: 10px;
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: 0.25s ease;
+}
+
+.structure-icon {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 2px solid #607d83;
+
+    color: #607d83;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Detected section */
+
+.structure-item.found {
+    border-color: #31d6c4;
+}
+
+.structure-item.found .structure-icon {
+    background: #31d6c4;
+    border-color: #31d6c4;
+    color: #071f26;
+}
+
+.structure-item.found .structure-icon::after {
+    content: "✓";
+}
+
+.structure-item.found .structure-icon {
+    font-size: 0;
+}
+
+.structure-item.found .structure-icon::after {
+    font-size: 14px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .resume-structure-list {
+        grid-template-columns: 1fr;
+    }
+
+}

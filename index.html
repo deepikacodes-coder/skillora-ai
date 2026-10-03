@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skillora AI | Resume Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="header">
+
+            <h1>
+                SKILLORA <span>AI</span>
+            </h1>
+
+            <p class="subtitle">
+                Resume Analyzer
+            </p>
+
+            <p class="tagline">
+                Analyze your resume and improve your job match
+            </p>
+
+        </header>
+
+
+        <!-- ================= INPUT SECTION ================= -->
+
+        <section class="analysis-card">
+
+            <div class="section-heading">
+
+                <h2>Analyze Your Resume</h2>
+
+                <p>
+                    Upload your resume and enter the job details
+                    to analyze your profile.
+                </p>
+
+            </div>
+
+
+            <!-- Resume Upload -->
+
+            <div class="form-group">
+
+                <label>
+                    Upload Resume
+                </label>
+
+                <div class="upload-box">
+
+                    <div class="upload-info">
+
+                        <div class="pdf-icon">
+                            PDF
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Choose a PDF file
+                            </h3>
+
+                            <p>
+                                Only PDF files are supported (Max 5 MB)
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        accept=".pdf"
+                    >
+
+                    <label
+                        for="resumeFile"
+                        class="choose-btn"
+                    >
+                        Choose File
+                    </label>
+
+                </div>
+
+
+                <p
+                    id="fileName"
+                    class="file-name"
+                >
+                    No file selected
+                </p>
+
+            </div>
+
+
+            <!-- Target Job Role -->
+
+            <div class="form-group">
+
+                <label for="jobRole">
+                    Target Job Role
+                </label>
+
+                <input
+                    type="text"
+                    id="jobRole"
+                    placeholder="AI Agent Developer Intern"
+                >
+
+            </div>
+
+
+            <!-- Job Description -->
+
+            <div class="form-group">
+
+                <label for="jobDescription">
+                    Job Description
+                </label>
+
+                <textarea
+                    id="jobDescription"
+                    placeholder="Paste the job description here..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Start Analysis -->
+
+            <button
+                type="button"
+                id="analyzeBtn"
+                class="analyze-btn"
+            >
+                Start Analysis
+            </button>
+
+
+          <!-- Status -->
+
+<p
+    id="statusMessage"
+    class="status-message"
+></p>
+
+
+<!-- View Candidate Rankings Button -->
+
+<div
+    id="rankingButtonContainer"
+    class="ranking-button-container"
+    style="display: none;"
+>
+    <button
+        type="button"
+        class="ranking-btn"
+        onclick="openCandidateRankings()"
+    >
+        View Candidate Rankings
+    </button>
+</div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ANALYSIS RESULT
+             ================================================== -->
+
+        <section
+            id="resultSection"
+            class="result-section"
+        >
+
+            <div class="section-heading">
+
+                <h2>
+                    Analysis Result
+                </h2>
+
+                <p>
+                    Here's how your resume matches the job requirements.
+                </p>
+
+            </div>
+
+
+            <!-- ================= JOB MATCH ================= -->
+
+            <div class="match-card">
+
+                <div class="score-circle">
+
+                    <span id="matchScore">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="match-info">
+
+                    <h3>
+                        Job Match
+                    </h3>
+
+                    <p>
+                        Resume & Job Description Match
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+
+            <!-- ================= RESULT GRID ================= -->
+
+            <div class="result-grid">
+
+
+                <!-- Matching Skills -->
+
+                <div class="result-card matching-card">
+
+                    <div class="result-title">
+
+                        <span class="result-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Matching Skills
+                            </h3>
+
+                            <p>
+                                Skills found in your resume
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <ul id="matchingSkills">
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Missing Skills -->
+
+                <div class="result-card missing-card">
+
+                    <div class="result-title">
+
+                        <span class="result-icon">
+                            !
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Missing Skills
+                            </h3>
+
+                            <p>
+                                Skills not found in your resume
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <ul id="missingSkills">
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Suggestions -->
+
+                <div class="result-card suggestion-card">
+
+                    <div class="result-title">
+
+                        <span class="result-icon">
+                            💡
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                ATS Suggestions
+                            </h3>
+
+                            <p>
+                                Improve your resume
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <ul id="suggestions">
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+           <!-- Resume Structure -->
+<section class="result-card resume-structure-card">
+
+    <div class="result-card-header">
+        <div>
+            <h2>Resume Structure</h2>
+            <p>Standard sections detected in your resume</p>
+        </div>
+    </div>
+
+    <div id="resumeStructure" class="resume-structure-list">
+
+        <div class="structure-item" data-section="Professional Summary">
+            <span class="structure-icon">○</span>
+            <span>Professional Summary</span>
+        </div>
+
+        <div class="structure-item" data-section="Education">
+            <span class="structure-icon">○</span>
+            <span>Education</span>
+        </div>
+
+        <div class="structure-item" data-section="Technical Skills">
+            <span class="structure-icon">○</span>
+            <span>Technical Skills</span>
+        </div>
+
+        <div class="structure-item" data-section="Experience">
+            <span class="structure-icon">○</span>
+            <span>Experience</span>
+        </div>
+
+        <div class="structure-item" data-section="Projects">
+            <span class="structure-icon">○</span>
+            <span>Projects</span>
+        </div>
+
+        <div class="structure-item" data-section="Certifications">
+            <span class="structure-icon">○</span>
+            <span>Certifications</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

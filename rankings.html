@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skillora AI | Candidate Rankings</title>
+
+    <link rel="stylesheet" href="rankings.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="header">
+
+            <div class="brand">
+                <h1>
+                    SKILLORA <span>AI</span>
+                </h1>
+
+                <div class="divider"></div>
+
+                <h2>
+                    Resume Analyzer
+                </h2>
+            </div>
+
+            <p>
+                Candidate Rankings
+            </p>
+
+        </header>
+
+
+        <!-- ================= UPLOAD SECTION ================= -->
+
+        <section class="analysis-card">
+
+            <div class="section-heading">
+
+                <h2>
+                    Analyze Multiple Resumes
+                </h2>
+
+                <p>
+                    Upload multiple resumes and enter job details
+                    to compare candidate profiles.
+                </p>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <!-- Resume Upload -->
+
+                <div class="form-group">
+
+                    <label>
+                        Upload Resumes
+                    </label>
+
+                    <div class="upload-box">
+
+                        <div class="upload-info">
+
+                            <div class="pdf-icon">
+                                PDF
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Choose PDF files
+                                </h3>
+
+                                <p>
+                                    You can upload multiple PDF files
+                                </p>
+
+                                <small>
+                                    Maximum 10 files
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <input
+                            type="file"
+                            id="resumeFiles"
+                            accept=".pdf"
+                            multiple
+                        >
+
+                        <label
+                            for="resumeFiles"
+                            class="choose-btn"
+                        >
+                            Choose Files
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        id="selectedFiles"
+                        class="selected-files"
+                    >
+                    </div>
+
+                </div>
+
+
+                <!-- Job Details -->
+
+                <div class="job-details">
+
+                    <div class="form-group">
+
+                        <label for="jobRole">
+                            Target Job Role
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobRole"
+                            placeholder="AI Agent Developer Intern"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="jobDescription">
+                            Job Description
+                        </label>
+
+                        <textarea
+                            id="jobDescription"
+                            placeholder="Python SQL Git Prompt Engineering AI Agent..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Start Button -->
+
+            <button
+                id="analyzeCandidatesBtn"
+                class="analyze-btn"
+            >
+                Start Analysis
+            </button>
+
+
+            <!-- Status -->
+
+            <p
+                id="statusMessage"
+                class="status-message"
+            ></p>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ANALYSIS SUMMARY
+             ================================================== -->
+
+        <section
+            id="summarySection"
+            class="summary-section"
+        >
+
+            <h2>
+                Analysis Summary
+            </h2>
+
+
+            <div class="summary-grid">
+
+
+                <!-- Total Candidates -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <strong id="totalCandidates">
+                            0
+                        </strong>
+
+                        <span>
+                            Total Candidates
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Best Match -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon success">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong id="bestMatch">
+                            0
+                        </strong>
+
+                        <span>
+                            Best Match
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Candidates Reviewed -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon blue">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <strong id="candidatesReviewed">
+                            0
+                        </strong>
+
+                        <span>
+                            Candidates Reviewed
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Average Score -->
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <strong id="averageScore">
+                            0%
+                        </strong>
+
+                        <span>
+                            Average Score
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             TOP CANDIDATE
+             ================================================== -->
+
+        <section
+            id="topCandidateSection"
+            class="top-candidate-section"
+        >
+
+            <h2>
+                Top Candidate Profile
+            </h2>
+
+
+            <div class="top-candidate-card">
+
+                <div class="candidate-heading">
+
+                    <span class="rank-badge">
+                        #1
+                    </span>
+
+                    <h3 id="topCandidateName">
+                        Candidate
+                    </h3>
+
+                </div>
+
+
+                <div class="candidate-details">
+
+
+                    <!-- Email -->
+
+                    <div class="detail-box">
+
+                        <span>
+                            ✉
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Email
+                            </small>
+
+                            <p id="topCandidateEmail">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="detail-box">
+
+                        <span>
+                            ☎
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Phone
+                            </small>
+
+                            <p id="topCandidatePhone">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="detail-box">
+
+                        <span>
+                            📍
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Location
+                            </small>
+
+                            <p id="topCandidateLocation">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Resume -->
+
+                    <div class="detail-box">
+
+                        <span>
+                            📄
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Resume
+                            </small>
+
+                            <p id="topCandidateResume">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Score -->
+
+                    <div class="detail-box score-box">
+
+                        <span>
+                            ⭐
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Score
+                            </small>
+
+                            <strong id="topCandidateScore">
+                                0%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CANDIDATE RANKINGS
+             ================================================== -->
+
+        <section class="ranking-section">
+
+            <div class="ranking-header">
+
+                <div>
+
+                    <h2>
+                        Candidate Rankings
+                    </h2>
+
+                    <p>
+                        Compare candidates based on their job match.
+                    </p>
+
+                </div>
+
+
+                <div class="sort-box">
+
+                    <label for="sortCandidates">
+                        Sort by:
+                    </label>
+
+                    <select id="sortCandidates">
+
+                        <option value="score">
+                            Score (High to Low)
+                        </option>
+
+                        <option value="name">
+                            Name (A-Z)
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Rank
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Location
+                            </th>
+
+                            <th>
+                                Resume
+                            </th>
+
+                            <th>
+                                Skills
+                            </th>
+
+                            <th>
+                                Score
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="rankingTableBody">
+
+                        <!-- Candidate rows will be added by JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         CANDIDATE DETAILS MODAL
+         ================================================== -->
+
+    <div
+        id="candidateModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                id="closeModal"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Candidate Details
+            </h2>
+
+
+            <div
+                id="candidateDetails"
+                class="candidate-modal-details"
+            >
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    id="viewAnalysisBtn"
+                    class="view-analysis-btn"
+                >
+                    View Full Analysis
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="rankings.js"></script>
+
+</body>
+
+</html>
